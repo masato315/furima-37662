@@ -18,5 +18,5 @@ class Item < ApplicationRecord
   belongs_to :delivery
   belongs_to :prefecture
   belongs_to :shipping_day
-  has_many :buys
+  has_one :buy
 end
