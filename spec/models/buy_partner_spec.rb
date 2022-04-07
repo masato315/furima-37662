@@ -70,7 +70,6 @@ RSpec.describe BuyPartner, type: :model do
       it 'tokenが空では登録できないこと' do
         @buy_partner.token = nil
         @buy_partner.valid?
-        binding.pry
         expect(@buy_partner.errors.full_messages).to include("Token can't be blank")
       end
     end
