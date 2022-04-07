@@ -57,8 +57,13 @@ RSpec.describe BuyPartner, type: :model do
         @buy_partner.valid?
         expect(@buy_partner.errors.full_messages).to include('Post code is invalid')
       end
-      it 'phone_numberは10桁以上11桁以内でないと保存できない' do
+      it '電話番号が9桁以下だと登録できないこと' do
         @buy_partner.phone_number = '1111'
+        @buy_partner.valid?
+        expect(@buy_partner.errors.full_messages).to include('Phone number is invalid')
+      end
+      it '電話番号が12桁以上だと登録できないこと' do
+        @buy_partner.phone_number = '1111111111111'
         @buy_partner.valid?
         expect(@buy_partner.errors.full_messages).to include('Phone number is invalid')
       end
@@ -71,6 +76,16 @@ RSpec.describe BuyPartner, type: :model do
         @buy_partner.token = nil
         @buy_partner.valid?
         expect(@buy_partner.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @buy_partner.user_id = nil
+        @buy_partner.valid?
+        expect(@buy_partner.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @buy_partner.item_id = nil
+        @buy_partner.valid?
+        expect(@buy_partner.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
