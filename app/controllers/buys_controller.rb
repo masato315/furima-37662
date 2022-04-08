@@ -32,7 +32,7 @@ class BuysController < ApplicationController
   end
 
   def buy_index
-    redirect_to root_path if current_user == @item.user || @item.buy == nil?
+    redirect_to root_path if current_user == @item.user || @item.buy != nil
   end
 
   def item_find
