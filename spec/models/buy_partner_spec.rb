@@ -25,67 +25,67 @@ RSpec.describe BuyPartner, type: :model do
       it 'post_codeが空だと保存できない' do
         @buy_partner.post_code = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Post code can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("郵便番号を入力してください")
       end
       it 'prefecture_idが空だと保存できない' do
         @buy_partner.prefecture_id = 1
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("都道府県は1以外の値にしてください")
       end
       it 'municipalitiesが空だと保存できない' do
         @buy_partner.municipalities = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Municipalities can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("市区町村を入力してください")
       end
       it 'addressが空だと保存できない' do
         @buy_partner.address = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Address can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("番地を入力してください")
       end
       it 'phone_numberが空だと保存できない' do
         @buy_partner.phone_number = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Phone number can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("電話番号を入力してください")
       end
       it 'post_codeはハイフンが無いと保存できない' do
         @buy_partner.post_code = '1234567'
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include('Post code is invalid')
+        expect(@buy_partner.errors.full_messages).to include("郵便番号は不正な値です")
       end
       it 'post_codeは半角文字列でないと保存できない' do
         @buy_partner.post_code = '１２３-４５６７'
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include('Post code is invalid')
+        expect(@buy_partner.errors.full_messages).to include("郵便番号は不正な値です")
       end
       it '電話番号が9桁以下だと登録できないこと' do
         @buy_partner.phone_number = '1111'
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include('Phone number is invalid')
+        expect(@buy_partner.errors.full_messages).to include("電話番号は不正な値です")
       end
       it '電話番号が12桁以上だと登録できないこと' do
         @buy_partner.phone_number = '1111111111111'
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include('Phone number is invalid')
+        expect(@buy_partner.errors.full_messages).to include("電話番号は不正な値です")
       end
-      it 'phone_numbernumberは半角数値でないと保存できない' do
+      it 'phone_numberは半角数値でないと保存できない' do
         @buy_partner.phone_number = '１２３４５６７８９０１'
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include('Phone number is invalid')
+        expect(@buy_partner.errors.full_messages).to include("電話番号は不正な値です")
       end
       it 'tokenが空では登録できないこと' do
         @buy_partner.token = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Token can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("クレジットカード情報を入力してください")
       end
       it 'userが紐付いていなければ購入できない' do
         @buy_partner.user_id = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("User can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("Userを入力してください")
       end
       it 'itemが紐付いていなければ購入できない' do
         @buy_partner.item_id = nil
         @buy_partner.valid?
-        expect(@buy_partner.errors.full_messages).to include("Item can't be blank")
+        expect(@buy_partner.errors.full_messages).to include("Itemを入力してください")
       end
     end
   end
